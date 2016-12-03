@@ -11,3 +11,5 @@ cp -R *.xctemplate ~/Library/Developer/Xcode/Templates/Hopper
 ```
 
 The template should then be available as a new project template in Xcode (File->New->Project… under Hopper->HopperCPU).
+
+The `include` directory of the Hopper SDK is expected inside the `HopperSDK` folder.

@@ -67,7 +67,7 @@
 
 - (int)addressSpaceWidthInBitsForCPUFamily:(NSString *)family andSubFamily:(NSString *)subFamily {
     if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) {
-        if ([subFamily isEqualToString:@"___VARIABLE_cpuSubFamily"]) return ___VARIABLE_bitCount;
+        if ([subFamily isEqualToString:@"___VARIABLE_cpuSubFamily___"]) return ___VARIABLE_bitCount___;
     }
     return 0;
 }
