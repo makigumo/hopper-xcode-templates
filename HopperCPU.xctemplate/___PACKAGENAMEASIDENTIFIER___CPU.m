@@ -61,7 +61,7 @@
 }
 
 - (NSArray *)cpuSubFamiliesForFamily:(NSString *)family {
-    if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) return @[];
+    if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) return @[@"___VARIABLE_cpuSubFamily___"];
     return nil;
 }
 
