@@ -146,7 +146,27 @@
     return line;
 }
 
-- (NSObject<HPASMLine> *)buildOperandString:(DisasmStruct *)disasm forOperandIndex:(NSUInteger)operandIndex inFile:(NSObject<HPDisassembledFile> *)file raw:(BOOL)raw {
+- (NSObject<HPASMLine> *)buildOperandString:(DisasmStruct *)disasm
+                            forOperandIndex:(NSUInteger)operandIndex
+                                     inFile:(NSObject<HPDisassembledFile> *)file
+                                        raw:(BOOL)raw {
+    if (operandIndex >= DISASM_MAX_OPERANDS) return nil;
+    DisasmOperand *operand = disasm->operand + operandIndex;
+    if (operand->type == DISASM_OPERAND_NO_OPERAND) return nil;
+
+    // Get the format requested by the user
+    ArgFormat format = [file formatForArgument:operandIndex atVirtualAddress:disasm->virtualAddr];
+
+    NSObject <HPHopperServices> *services = _cpu.hopperServices;
+
+    NSObject <HPASMLine> *line = [services blankASMLine];
+
+    // Put your code here
+
+
+    // Set format so that changes show up in sidebar
+    [file setFormat:format forArgument:operandIndex atVirtualAddress:disasm->virtualAddr];
+    [line setIsOperand:operandIndex startingAtIndex:0];
 
     return line;
 }
