@@ -180,13 +180,6 @@
     return basicBlock.to;
 }
 
-- (ASTNode *)rawDecodeArgumentIndex:(int)argIndex
-                           ofDisasm:(DisasmStruct *)disasm
-                  ignoringWriteMode:(BOOL)ignoreWrite
-                    usingDecompiler:(Decompiler *)decompiler {
-    return nil;
-}
-
 - (ASTNode *)decompileInstructionAtAddress:(Address)a
                                     disasm:(DisasmStruct *)d
                                  addNode_p:(BOOL *)addNode_p
