@@ -25,7 +25,7 @@
 }
 
 - (NSObject <CPUContext> *)buildCPUContextForFile:(NSObject <HPDisassembledFile> *)file {
-    return [[MIPSCtx alloc] initWithCPU:self andFile:file];
+    return [[___PACKAGENAMEASIDENTIFIER___Ctx alloc] initWithCPU:self andFile:file];
 }
 
 - (HopperUUID *)pluginUUID {
