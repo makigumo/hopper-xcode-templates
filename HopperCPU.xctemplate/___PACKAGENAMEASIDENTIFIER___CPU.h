@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Hopper/Hopper.h>
 
-typedef NS_ENUM(NSUInteger, MIPSRegClass) {
+typedef NS_ENUM(NSUInteger, ___PACKAGENAMEASIDENTIFIER___RegClass) {
     RegClass____PACKAGENAMEASIDENTIFIER____FPU = RegClass_FirstUserClass,
     RegClass____PACKAGENAMEASIDENTIFIER____Cnt
 };
