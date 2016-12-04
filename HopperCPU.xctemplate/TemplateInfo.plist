@@ -27,7 +27,7 @@
             <key>SharedSettings</key>
             <dict>
                 <key>INSTALL_PATH</key>
-                <string>$(LOCAL_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/CPUs</string>
+                <string>$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/CPUs</string>
                 <key>SKIP_INSTALL</key>
                 <string>YES</string>
                 <key>WRAPPER_EXTENSION</key>
@@ -59,9 +59,9 @@
                   <key>ShellPath</key>
                   <string>/bin/bash</string>
                   <key>ShellScript</key>
-                  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___CPU.hopperCPU"
+                  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___.hopperCPU"
 mkdir -p "${INSTALL_PATH}"
-cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___CPU.hopperCPU" "${INSTALL_PATH}"
+cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTALL_PATH}"
                   </string>
                   <key>ShowEnvVarsInLog</key>
                   <false/>
