@@ -52,7 +52,7 @@
     return @"©2016 - ___FULLUSERNAME___";
 }
 
-- (NSArray *)cpuFamilies {
+- (NSArray<NSString *> *)cpuFamilies {
     return @[@"___PACKAGENAMEASIDENTIFIER___"];
 }
 
@@ -60,7 +60,7 @@
     return @"0.0.1";
 }
 
-- (NSArray *)cpuSubFamiliesForFamily:(NSString *)family {
+- (NSArray<NSString *> *)cpuSubFamiliesForFamily:(NSString *)family {
     if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) return @[@"___VARIABLE_cpuSubFamily___"];
     return nil;
 }
@@ -84,11 +84,11 @@
     return 1;
 }
 
-- (NSArray *)syntaxVariantNames {
+- (NSArray<NSString *> *)syntaxVariantNames {
     return @[@"generic",];
 }
 
-- (NSArray *)cpuModeNames {
+- (NSArray<NSString *> *)cpuModeNames {
     return @[@"generic"];
 }
 
@@ -120,7 +120,11 @@
     return reg == 1;
 }
 
-- (NSString *)registerIndexToString:(NSUInteger)reg ofClass:(RegClass)reg_class withBitSize:(NSUInteger)size andPosition:(DisasmPosition)position {
+- (NSString *)registerIndexToString:(NSUInteger)reg
+                            ofClass:(RegClass)reg_class
+                        withBitSize:(NSUInteger)size
+                           position:(DisasmPosition)position
+                     andSyntaxIndex:(NSUInteger)syntaxIndex {
     switch (reg_class) {
 
         case -1:
