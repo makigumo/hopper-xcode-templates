@@ -74,7 +74,7 @@
     return DIS_NotSupported;
 }
 
-- (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(DetectedFileType *)fileType returnAdjustOffset:(uint64_t *)adjustOffset {
+- (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(NSObject<DetectedFileType> *)fileType returnAdjustOffset:(uint64_t *)adjustOffset {
     return nil;
 }
 
