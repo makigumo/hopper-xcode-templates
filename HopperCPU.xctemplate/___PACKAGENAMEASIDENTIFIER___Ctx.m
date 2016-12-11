@@ -114,7 +114,13 @@
 - (int)disassembleSingleInstruction:(DisasmStruct *)disasm usingProcessorMode:(NSUInteger)mode {
     if (disasm->bytes == NULL) return DISASM_UNKNOWN_OPCODE;
 
-    return len;
+    // clear possible artefacts
+    disasm->instruction.branchType = DISASM_BRANCH_NONE;
+    disasm->instruction.addressValue = 0;
+    disasm->instruction.pcRegisterValue = disasm->virtualAddr + insn->size;
+
+    // should return instruction size
+    return DISASM_UNKNOWN_OPCODE;
 }
 
 - (BOOL)instructionHaltsExecutionFlow:(DisasmStruct *)disasm {

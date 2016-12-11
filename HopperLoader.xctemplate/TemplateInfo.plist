@@ -5,7 +5,7 @@
     <key>Kind</key>
     <string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
     <key>Identifier</key>
-    <string>com.makigumo.hopper.cpu</string>
+    <string>com.makigumo.hopper.loader</string>
     <key>Ancestors</key>
     <array>
         <string>com.apple.dt.unit.bundleBase</string>
@@ -14,7 +14,7 @@
     <key>Concrete</key>
     <true/>
     <key>Description</key>
-    <string>This template builds a HopperCPU plugin that links against the Cocoa framework.</string>
+    <string>This template builds a HopperLoader plugin.</string>
     <key>SortOrder</key>
     <integer>101</integer>
     <key>Targets</key>
@@ -27,11 +27,11 @@
             <key>SharedSettings</key>
             <dict>
                 <key>INSTALL_PATH</key>
-                <string>$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/CPUs</string>
+                <string>$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/Loaders</string>
                 <key>SKIP_INSTALL</key>
                 <string>YES</string>
                 <key>WRAPPER_EXTENSION</key>
-                <string>hopperCPU</string>
+                <string>hopperLoader</string>
                 <key>COMBINE_HIDPI_IMAGES</key>
                 <string>YES</string>
                 <key>HEADER_SEARCH_PATHS</key>
@@ -59,9 +59,9 @@
                   <key>ShellPath</key>
                   <string>/bin/bash</string>
                   <key>ShellScript</key>
-                  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___.hopperCPU"
+                  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___.hopperLoader"
 mkdir -p "${INSTALL_PATH}"
-cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTALL_PATH}"
+cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperLoader" "${INSTALL_PATH}"
                   </string>
                   <key>ShowEnvVarsInLog</key>
                   <false/>
@@ -69,46 +69,34 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTAL
             </array>
         </dict>
     </array>
+    <key>Nodes</key>
+    <array>
+        <string>Info.plist:bundle</string>
+        <string>Info.plist:NSHumanReadableCopyright</string>
+        <string>___PACKAGENAMEASIDENTIFIER___Loader.h</string>
+        <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+    </array>
+    <key>Definitions</key>
+    <dict>
+        <key>Info.plist:bundle</key>
+        <string><![CDATA[<key>CFBundlePackageType</key>
+<string>BNDL</string>
+<key>NSPrincipalClass</key>
+<string>___PACKAGENAMEASIDENTIFIER___Loader</string>
+]]></string>
+        <key>___PACKAGENAMEASIDENTIFIER___Loader.h</key>
+        <dict>
+            <key>Path</key>
+            <string>___PACKAGENAMEASIDENTIFIER___Loader.h</string>
+        </dict>
+        <key>___PACKAGENAMEASIDENTIFIER___Loader.m</key>
+        <dict>
+            <key>Path</key>
+            <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+        </dict>
+    </dict>
     <key>Options</key>
     <array>
-        <dict>
-            <key>Identifier</key>
-            <string>cpuSubFamily</string>
-            <key>Name</key>
-            <string>CPU subfamily:</string>
-            <key>Description</key>
-            <string>The subfamily of the CPU</string>
-            <key>Type</key>
-            <string>text</string>
-            <key>Default</key>
-            <string></string>
-        </dict>
-        <dict>
-            <key>Identifier</key>
-            <string>registerCount</string>
-            <key>Name</key>
-            <string>Register count:</string>
-            <key>Description</key>
-            <string>The number of registers</string>
-            <key>Type</key>
-            <string>text</string>
-            <key>Default</key>
-            <string>32</string>
-        </dict>
-        <dict>
-            <key>Identifier</key>
-            <string>bitCount</string>
-            <key>Name</key>
-            <string>Bit count:</string>
-            <key>NotPersisted</key>
-            <false/>
-            <key>Description</key>
-            <string>The architecture bit count</string>
-            <key>Type</key>
-            <string>text</string>
-            <key>Default</key>
-            <string>32</string>
-        </dict>
         <dict>
             <key>Identifier</key>
             <string>endianess</string>
@@ -138,43 +126,6 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTAL
             </dict>
         </dict>
     </array>
-    <key>Nodes</key>
-    <array>
-        <string>Info.plist:bundle</string>
-        <string>Info.plist:NSHumanReadableCopyright</string>
-        <string>___PACKAGENAMEASIDENTIFIER___Ctx.h</string>
-        <string>___PACKAGENAMEASIDENTIFIER___Ctx.m</string>
-        <string>___PACKAGENAMEASIDENTIFIER___CPU.h</string>
-        <string>___PACKAGENAMEASIDENTIFIER___CPU.m</string>
-    </array>
-    <key>Definitions</key>
-    <dict>
-        <key>Info.plist:bundle</key>
-        <string><![CDATA[<key>CFBundlePackageType</key>
-<string>BNDL</string>
-<key>NSPrincipalClass</key>
-<string>___PACKAGENAMEASIDENTIFIER___CPU</string>
-]]></string>
-        <key>___PACKAGENAMEASIDENTIFIER___Ctx.h</key>
-        <dict>
-            <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___Ctx.h</string>
-        </dict>
-        <key>___PACKAGENAMEASIDENTIFIER___Ctx.m</key>
-        <dict>
-            <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___Ctx.m</string>
-        </dict>
-        <key>___PACKAGENAMEASIDENTIFIER___CPU.h</key>
-        <dict>
-            <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___CPU.h</string>
-        </dict>
-        <key>___PACKAGENAMEASIDENTIFIER___CPU.m</key>
-        <dict>
-            <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___CPU.m</string>
-        </dict>
-    </dict>
+
 </dict>
 </plist>
