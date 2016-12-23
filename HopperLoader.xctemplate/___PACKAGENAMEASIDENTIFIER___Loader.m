@@ -47,30 +47,34 @@
     return @"0.0.1";
 }
 
-- (CPUEndianess)endianess {
-    return ___VARIABLE_endianess___;
-}
-
 - (BOOL)canLoadDebugFiles {
     return NO;
 }
 
 // Returns an array of DetectedFileType objects.
-- (NSArray<DetectedFileType *> *)detectedTypesForData:(NSData *)data {
+- (NSArray<NSObject<HPDetectedFileType> *> *)detectedTypesForData:(NSData *)data {
 
     return @[];
 }
 
-- (FileLoaderLoadingStatus)loadData:(NSData *)data usingDetectedFileType:(DetectedFileType *)fileType options:(FileLoaderOptions)options forFile:(NSObject<HPDisassembledFile> *)file usingCallback:(FileLoadingCallbackInfo)callback {
+- (FileLoaderLoadingStatus)loadData:(NSData *)data
+              usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType
+                            options:(FileLoaderOptions)options
+                            forFile:(NSObject<HPDisassembledFile> *)file
+                      usingCallback:(FileLoadingCallbackInfo)callback {
 
     return DIS_OK;
 }
 
-- (void)fixupRebasedFile:(NSObject<HPDisassembledFile> *)file withSlide:(int64_t)slide originalFileData:(NSData *)fileData {
+- (void)fixupRebasedFile:(NSObject<HPDisassembledFile> *)file
+               withSlide:(int64_t)slide
+        originalFileData:(NSData *)fileData {
 
 }
 
-- (FileLoaderLoadingStatus)loadDebugData:(NSData *)data forFile:(NSObject<HPDisassembledFile> *)file usingCallback:(FileLoadingCallbackInfo)callback {
+- (FileLoaderLoadingStatus)loadDebugData:(NSData *)data
+                                 forFile:(NSObject<HPDisassembledFile> *)file
+                           usingCallback:(FileLoadingCallbackInfo)callback {
     return DIS_NotSupported;
 }
 

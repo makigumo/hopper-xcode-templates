@@ -95,37 +95,6 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperLoader" "${INS
             <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
         </dict>
     </dict>
-    <key>Options</key>
-    <array>
-        <dict>
-            <key>Identifier</key>
-            <string>endianess</string>
-            <key>Name</key>
-            <string>Endianess:</string>
-            <key>Description</key>
-            <string>The CPUs endianess</string>
-            <key>Type</key>
-            <string>popup</string>
-            <key>Values</key>
-            <array>
-                <string>Little Endian</string>
-                <string>Big Endian</string>
-            </array>
-            <key>Variables</key>
-            <dict>
-              <key>Little Endian</key>
-              <dict>
-                <key>endianess</key>
-                <string>CPUEndianess_Little</string>
-              </dict>
-              <key>Big Endian</key>
-              <dict>
-                <key>endianess</key>
-                <string>CPUEndianess_Big</string>
-              </dict>
-            </dict>
-        </dict>
-    </array>
 
 </dict>
 </plist>
