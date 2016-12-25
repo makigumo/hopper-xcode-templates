@@ -49,7 +49,7 @@
 }
 
 - (NSString *)pluginCopyright {
-    return @"©2016 - ___FULLUSERNAME___";
+    return @"___COPYRIGHT___";
 }
 
 - (NSArray<NSString *> *)cpuFamilies {
