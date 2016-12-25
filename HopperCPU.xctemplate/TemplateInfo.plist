@@ -146,6 +146,7 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTAL
         <string>___PACKAGENAMEASIDENTIFIER___Ctx.m</string>
         <string>___PACKAGENAMEASIDENTIFIER___CPU.h</string>
         <string>___PACKAGENAMEASIDENTIFIER___CPU.m</string>
+        <string>../.gitignore</string>
     </array>
     <key>Definitions</key>
     <dict>
@@ -174,6 +175,11 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTAL
         <dict>
             <key>Path</key>
             <string>___PACKAGENAMEASIDENTIFIER___CPU.m</string>
+        </dict>
+        <key>../.gitignore</key>
+        <dict>
+            <key>Path</key>
+            <string>gitignore</string>
         </dict>
     </dict>
 </dict>

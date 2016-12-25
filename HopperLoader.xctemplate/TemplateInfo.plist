@@ -75,6 +75,7 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperLoader" "${INS
         <string>Info.plist:NSHumanReadableCopyright</string>
         <string>___PACKAGENAMEASIDENTIFIER___Loader.h</string>
         <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+        <string>../.gitignore</string>
     </array>
     <key>Definitions</key>
     <dict>
@@ -93,6 +94,11 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperLoader" "${INS
         <dict>
             <key>Path</key>
             <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+        </dict>
+        <key>../.gitignore</key>
+        <dict>
+            <key>Path</key>
+            <string>gitignore</string>
         </dict>
     </dict>
 
