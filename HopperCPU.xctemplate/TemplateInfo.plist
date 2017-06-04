@@ -59,9 +59,9 @@
                   <key>ShellPath</key>
                   <string>/bin/bash</string>
                   <key>ShellScript</key>
-                  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___.hopperCPU"
+		  <string>rm -rf "${INSTALL_PATH}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}"
 mkdir -p "${INSTALL_PATH}"
-cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.hopperCPU" "${INSTALL_PATH}"
+cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}" "${INSTALL_PATH}"
                   </string>
                   <key>ShowEnvVarsInLog</key>
                   <false/>
