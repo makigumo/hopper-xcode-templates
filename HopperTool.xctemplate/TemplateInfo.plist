@@ -5,7 +5,7 @@
     <key>Kind</key>
     <string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
     <key>Identifier</key>
-    <string>com.makigumo.hopper.loader</string>
+    <string>com.makigumo.hopper.tool</string>
     <key>Ancestors</key>
     <array>
         <string>com.apple.dt.unit.bundleBase</string>
@@ -14,7 +14,7 @@
     <key>Concrete</key>
     <true/>
     <key>Description</key>
-    <string>This template builds a Hopper Loader plugin.</string>
+    <string>This template builds a Hopper Tool plugin that links against the Cocoa framework.</string>
     <key>SortOrder</key>
     <integer>101</integer>
     <key>Targets</key>
@@ -27,11 +27,11 @@
             <key>SharedSettings</key>
             <dict>
                 <key>INSTALL_PATH</key>
-                <string>$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/Loaders</string>
+                <string>$(USER_LIBRARY_DIR)/Application Support/Hopper/PlugIns/V4/Tools</string>
                 <key>SKIP_INSTALL</key>
                 <string>YES</string>
                 <key>WRAPPER_EXTENSION</key>
-                <string>hopperLoader</string>
+                <string>hopperTool</string>
                 <key>COMBINE_HIDPI_IMAGES</key>
                 <string>YES</string>
                 <key>HEADER_SEARCH_PATHS</key>
@@ -73,8 +73,8 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
     <array>
         <string>Info.plist:bundle</string>
         <string>Info.plist:NSHumanReadableCopyright</string>
-        <string>___PACKAGENAMEASIDENTIFIER___Loader.h</string>
-        <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+        <string>___PACKAGENAMEASIDENTIFIER___Tool.h</string>
+        <string>___PACKAGENAMEASIDENTIFIER___Tool.m</string>
         <string>../.gitignore</string>
     </array>
     <key>Definitions</key>
@@ -83,17 +83,17 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
         <string><![CDATA[<key>CFBundlePackageType</key>
 <string>BNDL</string>
 <key>NSPrincipalClass</key>
-<string>___PACKAGENAMEASIDENTIFIER___Loader</string>
+<string>___PACKAGENAMEASIDENTIFIER___Tool</string>
 ]]></string>
-        <key>___PACKAGENAMEASIDENTIFIER___Loader.h</key>
+        <key>___PACKAGENAMEASIDENTIFIER___Tool.h</key>
         <dict>
             <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___Loader.h</string>
+            <string>___PACKAGENAMEASIDENTIFIER___Tool.h</string>
         </dict>
-        <key>___PACKAGENAMEASIDENTIFIER___Loader.m</key>
+        <key>___PACKAGENAMEASIDENTIFIER___Tool.m</key>
         <dict>
             <key>Path</key>
-            <string>___PACKAGENAMEASIDENTIFIER___Loader.m</string>
+            <string>___PACKAGENAMEASIDENTIFIER___Tool.m</string>
         </dict>
         <key>../.gitignore</key>
         <dict>
@@ -101,6 +101,5 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
             <string>gitignore</string>
         </dict>
     </dict>
-
 </dict>
 </plist>
