@@ -14,7 +14,7 @@
     <key>Concrete</key>
     <true/>
     <key>Description</key>
-    <string>This template builds a HopperCPU plugin that links against the Cocoa framework.</string>
+    <string>This template builds a Hopper CPU plugin that links against the Cocoa framework.</string>
     <key>SortOrder</key>
     <integer>101</integer>
     <key>Targets</key>
@@ -115,7 +115,7 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
             <key>Name</key>
             <string>Endianess:</string>
             <key>Description</key>
-            <string>The CPUs endianess</string>
+            <string>The CPU endianess</string>
             <key>Type</key>
             <string>popup</string>
             <key>Values</key>
