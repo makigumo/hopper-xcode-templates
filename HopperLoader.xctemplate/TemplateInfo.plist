@@ -14,7 +14,7 @@
     <key>Concrete</key>
     <true/>
     <key>Description</key>
-    <string>This template builds a HopperLoader plugin.</string>
+    <string>This template builds a Hopper Loader plugin.</string>
     <key>SortOrder</key>
     <integer>101</integer>
     <key>Targets</key>
