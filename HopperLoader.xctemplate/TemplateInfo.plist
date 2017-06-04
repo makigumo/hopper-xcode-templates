@@ -37,7 +37,7 @@
                 <key>HEADER_SEARCH_PATHS</key>
                 <string>$(SRCROOT)/HopperSDK/include</string>
                 <key>MACOSX_DEPLOYMENT_TARGET</key>
-                <string>10.10</string>
+                <string>10.9</string>
             </dict>
             <key>BuildPhases</key>
             <array>
