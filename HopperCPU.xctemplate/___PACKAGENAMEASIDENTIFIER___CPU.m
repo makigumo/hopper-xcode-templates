@@ -24,6 +24,10 @@
     return _services;
 }
 
+- (Class)cpuContextClass {
+    return [___PACKAGENAMEASIDENTIFIER___Ctx class];
+}
+
 - (NSObject <CPUContext> *)buildCPUContextForFile:(NSObject <HPDisassembledFile> *)file {
     return [[___PACKAGENAMEASIDENTIFIER___Ctx alloc] initWithCPU:self andFile:file];
 }
