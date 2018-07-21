@@ -77,6 +77,21 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
         <string>___PACKAGENAMEASIDENTIFIER___Tool.m</string>
         <string>../.gitignore</string>
     </array>
+    <key>Options</key>
+    <array>
+      <dict>
+          <key>Identifier</key>
+          <string>commandLineIdentifier</string>
+          <key>Name</key>
+          <string>Command Line ID:</string>
+          <key>Description</key>
+          <string>The identifier when called from the command line</string>
+          <key>Type</key>
+          <string>text</string>
+          <key>Default</key>
+          <string></string>
+      </dict>
+    </array>
     <key>Definitions</key>
     <dict>
         <key>Info.plist:bundle</key>

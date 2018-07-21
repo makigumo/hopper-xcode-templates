@@ -12,6 +12,10 @@
     NSObject<HPHopperServices> *_services;
 }
 
++ (int)sdkVersion {
+    return HOPPER_CURRENT_SDK_VERSION;
+}
+
 - (instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
     if (self = [super init]) {
         _services = services;
@@ -45,6 +49,10 @@
 
 - (NSString *)pluginVersion {
     return @"0.0.1";
+}
+
+- (NSString *)commandLineIdentifier {
+    return @"___VARIABLE_commandLineIdentifier___";
 }
 
 - (NSArray *)toolMenuDescription {

@@ -137,6 +137,18 @@ cp -rf "${BUILT_PRODUCTS_DIR}/___PACKAGENAMEASIDENTIFIER___.${WRAPPER_EXTENSION}
               </dict>
             </dict>
         </dict>
+        <dict>
+            <key>Identifier</key>
+            <string>commandLineIdentifier</string>
+            <key>Name</key>
+            <string>Command Line ID:</string>
+            <key>Description</key>
+            <string>The identifier when called from the command line</string>
+            <key>Type</key>
+            <string>text</string>
+            <key>Default</key>
+            <string></string>
+        </dict>
     </array>
     <key>Nodes</key>
     <array>

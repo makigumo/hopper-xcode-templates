@@ -57,7 +57,7 @@
 }
 
 - (BOOL)hasProcedurePrologAt:(Address)address {
-  return NO;
+    return NO;
 }
 
 - (NSUInteger)detectedPaddingLengthAt:(Address)address {
@@ -71,31 +71,24 @@
 }
 
 - (void)analysisBeginsAt:(Address)entryPoint {
-
 }
 
 - (void)analysisEnded {
-
 }
 
 - (void)procedureAnalysisBeginsForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
-
 }
 
 - (void)procedureAnalysisOfPrologForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
-
 }
 
 - (void)procedureAnalysisOfEpilogForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
-
 }
 
 - (void)procedureAnalysisEndedForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
-
 }
 
 - (void)procedureAnalysisContinuesOnBasicBlock:(NSObject<HPBasicBlock> *)basicBlock {
-
 }
 
 - (Address)getThunkDestinationForInstructionAt:(Address)address {
@@ -103,16 +96,23 @@
 }
 
 - (void)resetDisassembler {
-
 }
 
 - (uint8_t)estimateCPUModeAtVirtualAddress:(Address)address {
     return 0;
 }
 
+- (BOOL)instructionConditionsCPUModeAtTargetAddress:(DisasmStruct *)disasmStruct resultCPUMode:(uint8_t *)cpuMode {
+    return NO;
+}
+
+- (uint8_t)cpuModeForNextInstruction:(DisasmStruct *)disasmStruct {
+    return 0;
+}
 
 - (int)disassembleSingleInstruction:(DisasmStruct *)disasm usingProcessorMode:(NSUInteger)mode {
-    if (disasm->bytes == NULL) return DISASM_UNKNOWN_OPCODE;
+    if (disasm->bytes == NULL)
+        return DISASM_UNKNOWN_OPCODE;
 
     // clear possible artefacts
     disasm->instruction.branchType = DISASM_BRANCH_NONE;
@@ -127,20 +127,27 @@
     return NO;
 }
 
-- (void)performBranchesAnalysis:(DisasmStruct *)disasm computingNextAddress:(Address *)next andBranches:(NSMutableArray *)branches forProcedure:(NSObject<HPProcedure> *)procedure basicBlock:(NSObject<HPBasicBlock> *)basicBlock ofSegment:(NSObject<HPSegment> *)segment calledAddresses:(NSMutableArray *)calledAddresses callsites:(NSMutableArray *)callSitesAddresses {
-
+- (void)performBranchesAnalysis:(DisasmStruct *)disasm
+           computingNextAddress:(Address *)next
+                    andBranches:(NSMutableArray *)branches
+                   forProcedure:(NSObject<HPProcedure> *)procedure
+                     basicBlock:(NSObject<HPBasicBlock> *)basicBlock
+                      ofSegment:(NSObject<HPSegment> *)segment
+                calledAddresses:(NSMutableArray<NSObject<HPCallDestination> *> *)calledAddresses
+                      callsites:(NSMutableArray *)callSitesAddresses {
 }
 
-- (void)performInstructionSpecificAnalysis:(DisasmStruct *)disasm forProcedure:(NSObject<HPProcedure> *)procedure inSegment:(NSObject<HPSegment> *)segment {
-
+- (void)performInstructionSpecificAnalysis:(DisasmStruct *)disasm
+                              forProcedure:(NSObject<HPProcedure> *)procedure
+                                 inSegment:(NSObject<HPSegment> *)segment {
 }
 
-- (void)performProcedureAnalysis:(NSObject<HPProcedure> *)procedure basicBlock:(NSObject<HPBasicBlock> *)basicBlock disasm:(DisasmStruct *)disasm {
-
+- (void)performProcedureAnalysis:(NSObject<HPProcedure> *)procedure
+                      basicBlock:(NSObject<HPBasicBlock> *)basicBlock
+                          disasm:(DisasmStruct *)disasm {
 }
 
 - (void)updateProcedureAnalysis:(DisasmStruct *)disasm {
-
 }
 
 // Printing
@@ -156,19 +163,20 @@
                             forOperandIndex:(NSUInteger)operandIndex
                                      inFile:(NSObject<HPDisassembledFile> *)file
                                         raw:(BOOL)raw {
-    if (operandIndex >= DISASM_MAX_OPERANDS) return nil;
+    if (operandIndex >= DISASM_MAX_OPERANDS)
+        return nil;
     DisasmOperand *operand = disasm->operand + operandIndex;
-    if (operand->type == DISASM_OPERAND_NO_OPERAND) return nil;
+    if (operand->type == DISASM_OPERAND_NO_OPERAND)
+        return nil;
 
     // Get the format requested by the user
     ArgFormat format = [file formatForArgument:operandIndex atVirtualAddress:disasm->virtualAddr];
 
-    NSObject <HPHopperServices> *services = _cpu.hopperServices;
+    NSObject<HPHopperServices> *services = _cpu.hopperServices;
 
-    NSObject <HPASMLine> *line = [services blankASMLine];
+    NSObject<HPASMLine> *line = [services blankASMLine];
 
     // Put your code here
-
 
     // Set format so that changes show up in sidebar
     [file setFormat:format forArgument:operandIndex atVirtualAddress:disasm->virtualAddr];
@@ -177,15 +185,19 @@
     return line;
 }
 
-- (NSObject<HPASMLine> *)buildCompleteOperandString:(DisasmStruct *)disasm inFile:(NSObject<HPDisassembledFile> *)file raw:(BOOL)raw {
+- (NSObject<HPASMLine> *)buildCompleteOperandString:(DisasmStruct *)disasm
+                                             inFile:(NSObject<HPDisassembledFile> *)file
+                                                raw:(BOOL)raw {
     NSObject<HPHopperServices> *services = _cpu.hopperServices;
 
     NSObject<HPASMLine> *line = [services blankASMLine];
 
-    for (int op_index=0; op_index<=DISASM_MAX_OPERANDS; op_index++) {
+    for (int op_index = 0; op_index <= DISASM_MAX_OPERANDS; op_index++) {
         NSObject<HPASMLine> *part = [self buildOperandString:disasm forOperandIndex:op_index inFile:file raw:raw];
-        if (part == nil) break;
-        if (op_index) [line appendRawString:@", "];
+        if (part == nil)
+            break;
+        if (op_index)
+            [line appendRawString:@", "];
         [line append:part];
     }
 
@@ -215,7 +227,12 @@
 
 // Assembler
 
-- (NSData *)assembleRawInstruction:(NSString *)instr atAddress:(Address)addr forFile:(NSObject<HPDisassembledFile> *)file withCPUMode:(uint8_t)cpuMode usingSyntaxVariant:(NSUInteger)syntax error:(NSError **)error {
+- (NSData *)assembleRawInstruction:(NSString *)instr
+                         atAddress:(Address)addr
+                           forFile:(NSObject<HPDisassembledFile> *)file
+                       withCPUMode:(uint8_t)cpuMode
+                usingSyntaxVariant:(NSUInteger)syntax
+                             error:(NSError **)error {
     return nil;
 }
 
@@ -227,4 +244,11 @@
     return NO;
 }
 
+- (BOOL)instructionOnlyLoadsAddress:(DisasmStruct *)disasmStruct {
+    return NO;
+}
+
+- (BOOL)instructionManipulatesFloat:(DisasmStruct *)disasmStruct {
+    return NO;
+}
 @end

@@ -12,6 +12,10 @@
     NSObject<HPHopperServices> *_services;
 }
 
++ (int)sdkVersion {
+    return HOPPER_CURRENT_SDK_VERSION;
+}
+
 - (instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
     if (self = [super init]) {
         _services = services;
@@ -47,6 +51,10 @@
     return @"0.0.1";
 }
 
+- (NSString *)commandLineIdentifier {
+    return @"___VARIABLE_commandLineIdentifier___";
+}
+
 - (BOOL)canLoadDebugFiles {
     return NO;
 }
@@ -66,10 +74,7 @@
     return DIS_OK;
 }
 
-- (void)fixupRebasedFile:(NSObject<HPDisassembledFile> *)file
-               withSlide:(int64_t)slide
-        originalFileData:(NSData *)fileData {
-
+- (void)fixupRebasedFile:(NSObject<HPDisassembledFile> *)file withSlide:(int64_t)slide originalFileData:(NSData *)fileData {
 }
 
 - (FileLoaderLoadingStatus)loadDebugData:(NSData *)data
@@ -78,7 +83,9 @@
     return DIS_NotSupported;
 }
 
-- (NSData *)extractFromData:(NSData *)data usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType returnAdjustOffset:(uint64_t *)adjustOffset {
+- (NSData *)extractFromData:(NSData *)data
+      usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType
+         returnAdjustOffset:(uint64_t *)adjustOffset {
     return nil;
 }
 
