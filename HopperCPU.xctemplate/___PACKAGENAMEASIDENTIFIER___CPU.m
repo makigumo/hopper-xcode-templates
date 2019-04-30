@@ -36,7 +36,7 @@
     return [[___PACKAGENAMEASIDENTIFIER___Ctx alloc] initWithCPU:self andFile:file];
 }
 
-- (HopperUUID *)pluginUUID {
+- (NSObject<HPHopperUUID> *)pluginUUID {
     return [_services UUIDWithString:@"___UUID___"];
 }
 

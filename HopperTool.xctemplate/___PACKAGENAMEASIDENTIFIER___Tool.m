@@ -23,7 +23,7 @@
     return self;
 }
 
-- (HopperUUID *)pluginUUID {
+- (NSObject<HPHopperUUID> *)pluginUUID {
     return [_services UUIDWithString:@"___UUID___"];
 }
 
