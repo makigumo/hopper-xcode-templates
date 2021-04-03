@@ -1,6 +1,6 @@
 # Xcode templates for Hopper disassembler
 
-Currently the templates are targeted at Hopper SDK 4.3.26+ providing some basic options.
+Currently the templates are targeted at Hopper SDK 4.7.3+ providing some basic options.
 ![Options](/img/options.gif)
 
 
