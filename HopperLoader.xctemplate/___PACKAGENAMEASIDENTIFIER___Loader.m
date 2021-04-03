@@ -65,27 +65,35 @@
     return @[];
 }
 
-- (FileLoaderLoadingStatus)loadData:(NSData *)data
-              usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType
+- (FileLoaderLoadingStatus)loadData:(nonnull const void *)bytes
+                             length:(size_t)length
+              usingDetectedFileType:(nonnull NSObject<HPDetectedFileType> *)fileType
                             options:(FileLoaderOptions)options
-                            forFile:(NSObject<HPDisassembledFile> *)file
-                      usingCallback:(FileLoadingCallbackInfo)callback {
+                            forFile:(nonnull NSObject<HPDisassembledFile> *)file
+                      usingCallback:(nullable FileLoadingCallbackInfo)callback {
 
     return DIS_OK;
 }
 
-- (void)fixupRebasedFile:(NSObject<HPDisassembledFile> *)file withSlide:(int64_t)slide originalFileData:(NSData *)fileData {
+- (void)fixupRebasedFile:(nonnull NSObject<HPDisassembledFile> *)file
+               withSlide:(int64_t)slide
+        originalFileData:(nonnull const void *)fileBytes
+                  length:(size_t)length {
 }
 
-- (FileLoaderLoadingStatus)loadDebugData:(NSData *)data
-                                 forFile:(NSObject<HPDisassembledFile> *)file
-                           usingCallback:(FileLoadingCallbackInfo)callback {
+- (FileLoaderLoadingStatus)loadDebugData:(nonnull const void *)bytes
+                                  length:(size_t)length
+                                 forFile:(nonnull NSObject<HPDisassembledFile> *)file
+                           usingCallback:(nullable FileLoadingCallbackInfo)callback {
     return DIS_NotSupported;
 }
 
-- (NSData *)extractFromData:(NSData *)data
-      usingDetectedFileType:(NSObject<HPDetectedFileType> *)fileType
-         returnAdjustOffset:(uint64_t *)adjustOffset {
+- (nullable NSData *)extractFromData:(nonnull const void *)bytes
+                              length:(size_t)length
+               usingDetectedFileType:(nonnull NSObject<HPDetectedFileType> *)fileType
+                    originalFileName:(nullable NSString *)filename
+                  returnAdjustOffset:(nullable uint64_t *)adjustOffset
+                returnAdjustFilename:(NSString * _Nullable __autoreleasing * _Nullable)newFilename {
     return nil;
 }
 
