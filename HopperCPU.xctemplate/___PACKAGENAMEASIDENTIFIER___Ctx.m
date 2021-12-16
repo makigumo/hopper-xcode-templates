@@ -14,7 +14,8 @@
     NSObject<HPDisassembledFile> *_file;
 }
 
-- (instancetype)initWithCPU:(___PACKAGENAMEASIDENTIFIER___CPU *)cpu andFile:(NSObject<HPDisassembledFile> *)file {
+- (instancetype)initWithCPU:(___PACKAGENAMEASIDENTIFIER___CPU *)cpu
+                    andFile:(NSObject<HPDisassembledFile> *)file {
     if (self = [super init]) {
         _cpu = cpu;
         _file = file;
@@ -29,11 +30,16 @@
     return _cpu;
 }
 
-- (void)initDisasmStructure:(DisasmStruct *)disasm withSyntaxIndex:(NSUInteger)syntaxIndex {
+- (void)initDisasmStructure:(nonnull DisasmStruct*)disasm
+            withSyntaxIndex:(NSUInteger)syntaxIndex {
     bzero(disasm, sizeof(DisasmStruct));
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
 // Analysis
+//
+////////////////////////////////////////////////////////////////////////////////
 
 - (Address)adjustCodeAddress:(Address)address {
     return address;
@@ -47,7 +53,12 @@
     return NO;
 }
 
-- (Address)nextAddressToTryIfInstructionFailedToDecodeAt:(Address)address forCPUMode:(uint8_t)mode {
+- (uint8_t)estimateCPUModeAtVirtualAddress:(Address)address {
+    return 0;
+}
+
+- (Address)nextAddressToTryIfInstructionFailedToDecodeAt:(Address)address
+                                              forCPUMode:(uint8_t)mode {
     return ((address & ~1) + 2);
 }
 
@@ -76,23 +87,23 @@
 - (void)analysisEnded {
 }
 
-- (void)procedureAnalysisBeginsForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
+- (void)procedureAnalysisBeginsForProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                               atEntryPoint:(Address)entryPoint {
 }
 
-- (void)procedureAnalysisOfPrologForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
+- (void)procedureAnalysisOfPrologForProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                                 atEntryPoint:(Address)entryPoint {
 }
 
-- (void)procedureAnalysisOfEpilogForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
+- (void)procedureAnalysisOfEpilogForProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                                 atEntryPoint:(Address)entryPoint {
 }
 
-- (void)procedureAnalysisEndedForProcedure:(NSObject<HPProcedure> *)procedure atEntryPoint:(Address)entryPoint {
+- (void)procedureAnalysisEndedForProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                              atEntryPoint:(Address)entryPoint {
 }
 
-- (void)procedureAnalysisContinuesOnBasicBlock:(NSObject<HPBasicBlock> *)basicBlock {
-}
-
-- (Address)getThunkDestinationForInstructionAt:(Address)address {
-    return BAD_ADDRESS;
+- (void)procedureAnalysisContinuesOnBasicBlock:(nonnull NSObject<HPBasicBlock> *)basicBlock {
 }
 
 - (void)resetDisassembler {
@@ -106,11 +117,8 @@
     return NO;
 }
 
-- (uint8_t)cpuModeForNextInstruction:(DisasmStruct *)disasmStruct {
-    return 0;
-}
-
-- (int)disassembleSingleInstruction:(DisasmStruct *)disasm usingProcessorMode:(NSUInteger)mode {
+- (int)disassembleSingleInstruction:(nonnull DisasmStruct *)disasm 
+                 usingProcessorMode:(NSUInteger)mode {
     if (disasm->bytes == NULL)
         return DISASM_UNKNOWN_OPCODE;
 
@@ -123,45 +131,79 @@
     return DISASM_UNKNOWN_OPCODE;
 }
 
-- (BOOL)instructionHaltsExecutionFlow:(DisasmStruct *)disasm {
+- (BOOL)instructionHaltsExecutionFlow:(nonnull DisasmStruct *)disasm {
     return NO;
 }
 
-- (void)performBranchesAnalysis:(DisasmStruct *)disasm
-           computingNextAddress:(Address *)next
-                    andBranches:(NSMutableArray *)branches
-                   forProcedure:(NSObject<HPProcedure> *)procedure
-                     basicBlock:(NSObject<HPBasicBlock> *)basicBlock
-                      ofSegment:(NSObject<HPSegment> *)segment
-                calledAddresses:(NSMutableArray<NSObject<HPCallDestination> *> *)calledAddresses
-                      callsites:(NSMutableArray *)callSitesAddresses {
+- (void)performProcedureAnalysis:(nonnull NSObject<HPProcedure> *)procedure
+                      basicBlock:(nonnull NSObject<HPBasicBlock> *)basicBlock
+                          disasm:(nonnull DisasmStruct *)disasm {
 }
 
-- (void)performInstructionSpecificAnalysis:(DisasmStruct *)disasm
-                              forProcedure:(NSObject<HPProcedure> *)procedure
-                                 inSegment:(NSObject<HPSegment> *)segment {
-}
-
-- (void)performProcedureAnalysis:(NSObject<HPProcedure> *)procedure
-                      basicBlock:(NSObject<HPBasicBlock> *)basicBlock
-                          disasm:(DisasmStruct *)disasm {
+- (void)updateProcedureAnalysis:(nonnull DisasmStruct *)disasm {
 }
 
 - (void)updateProcedureAnalysis:(DisasmStruct *)disasm {
 }
 
-// Printing
 
-- (NSObject<HPASMLine> *)buildMnemonicString:(DisasmStruct *)disasm inFile:(NSObject<HPDisassembledFile> *)file {
+- (BOOL)instructionCanBeUsedToExtractDirectMemoryReferences:(nonnull DisasmStruct *)disasmStruct {
+    return YES;
+}
+
+- (BOOL)instructionOnlyLoadsAddress:(nonnull DisasmStruct *)disasmStruct {
+    return NO;
+}
+
+- (BOOL)instructionManipulatesFloat:(nonnull DisasmStruct *)disasmStruct {
+    return NO;
+}
+
+- (uint8_t)cpuModeForNextInstruction:(nonnull DisasmStruct *)disasmStruct {
+    return 0;
+}
+
+- (BOOL)instructionMayBeASwitchStatement:(nonnull DisasmStruct *)disasmStruct {
+    return NO;
+}
+
+- (void)performBranchesAnalysis:(nonnull DisasmStruct *)disasm
+           computingNextAddress:(nonnull Address *)next
+                    andBranches:(nonnull NSMutableArray<NSNumber *> *)branches
+                   forProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                     basicBlock:(nonnull NSObject<HPBasicBlock> *)basicBlock
+                      ofSegment:(nonnull NSObject<HPSegment> *)segment
+                calledAddresses:(nonnull NSMutableArray<NSObject<HPCallDestination> *> *)calledAddresses
+                      callsites:(nonnull NSMutableArray<NSNumber *> *)callSitesAddresses {
+}
+
+- (void)performInstructionSpecificAnalysis:(nonnull DisasmStruct *)disasm 
+                              forProcedure:(nonnull NSObject<HPProcedure> *)procedure
+                                 inSegment:(nonnull NSObject<HPSegment> *)segment {
+}
+
+- (Address)getThunkDestinationForInstructionAt:(Address)address {
+    return BAD_ADDRESS;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Printing instruction
+//
+////////////////////////////////////////////////////////////////////////////////
+
+
+- (NSObject<HPASMLine> *)buildMnemonicString:(nonnull DisasmStruct *)disasm
+                                      inFile:(nonnull NSObject<HPDisassembledFile> *)file {
     NSObject<HPHopperServices> *services = _cpu.hopperServices;
     NSObject<HPASMLine> *line = [services blankASMLine];
     [line appendMnemonic:@(disasm->instruction.mnemonic)];
     return line;
 }
 
-- (NSObject<HPASMLine> *)buildOperandString:(DisasmStruct *)disasm
+- (NSObject<HPASMLine> *)buildOperandString:(nonnull DisasmStruct *)disasm
                             forOperandIndex:(NSUInteger)operandIndex
-                                     inFile:(NSObject<HPDisassembledFile> *)file
+                                     inFile:(nonnull NSObject<HPDisassembledFile> *)file
                                         raw:(BOOL)raw {
     if (operandIndex >= DISASM_MAX_OPERANDS)
         return nil;
@@ -185,8 +227,8 @@
     return line;
 }
 
-- (NSObject<HPASMLine> *)buildCompleteOperandString:(DisasmStruct *)disasm
-                                             inFile:(NSObject<HPDisassembledFile> *)file
+- (NSObject<HPASMLine> *)buildCompleteOperandString:(nonnull DisasmStruct *)disasm
+                                             inFile:(nonnull NSObject<HPDisassembledFile> *)file
                                                 raw:(BOOL)raw {
     NSObject<HPHopperServices> *services = _cpu.hopperServices;
 
@@ -204,51 +246,47 @@
     return line;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
 // Decompiler
+//
+////////////////////////////////////////////////////////////////////////////////
 
-- (BOOL)canDecompileProcedure:(NSObject<HPProcedure> *)procedure {
+- (BOOL)canDecompileProcedure:(nonnull NSObject<HPProcedure> *)procedure {
     return NO;
 }
 
-- (Address)skipHeader:(NSObject<HPBasicBlock> *)basicBlock ofProcedure:(NSObject<HPProcedure> *)procedure {
+- (Address)skipHeader:(nonnull NSObject<HPBasicBlock> *)basicBlock
+          ofProcedure:(nonnull NSObject<HPProcedure> *)procedure {
     return basicBlock.from;
 }
 
-- (Address)skipFooter:(NSObject<HPBasicBlock> *)basicBlock ofProcedure:(NSObject<HPProcedure> *)procedure {
+- (Address)skipFooter:(nonnull NSObject<HPBasicBlock> *)basicBlock
+          ofProcedure:(nonnull NSObject<HPProcedure> *)procedure {
     return basicBlock.to;
 }
 
 - (ASTNode *)decompileInstructionAtAddress:(Address)a
-                                    disasm:(DisasmStruct *)d
-                                 addNode_p:(BOOL *)addNode_p
-                           usingDecompiler:(Decompiler *)decompiler {
+                                    disasm:(nonnull DisasmStruct *)d
+                                 addNode_p:(nonnull BOOL *)addNode_p
+                           usingDecompiler:(nonnull Decompiler *)decompiler {
     return nil;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+//
 // Assembler
+//
+////////////////////////////////////////////////////////////////////////////////
 
-- (NSData *)assembleRawInstruction:(NSString *)instr
-                         atAddress:(Address)addr
-                           forFile:(NSObject<HPDisassembledFile> *)file
-                       withCPUMode:(uint8_t)cpuMode
-                usingSyntaxVariant:(NSUInteger)syntax
-                             error:(NSError **)error {
+- (nonnull NSData *)assembleRawInstruction:(nonnull NSString *)instr
+                                 atAddress:(Address)addr 
+                                   forFile:(nonnull NSObject<HPDisassembledFile> *)file 
+                               withCPUMode:(uint8_t)cpuMode 
+                        usingSyntaxVariant:(NSUInteger)syntax 
+                                     error:(NSError * _Nullable * _Nullable)error;
+ {
     return nil;
 }
 
-- (BOOL)instructionCanBeUsedToExtractDirectMemoryReferences:(DisasmStruct *)disasmStruct {
-    return YES;
-}
-
-- (BOOL)instructionMayBeASwitchStatement:(DisasmStruct *)disasmStruct {
-    return NO;
-}
-
-- (BOOL)instructionOnlyLoadsAddress:(DisasmStruct *)disasmStruct {
-    return NO;
-}
-
-- (BOOL)instructionManipulatesFloat:(DisasmStruct *)disasmStruct {
-    return NO;
-}
 @end

@@ -17,7 +17,7 @@
     return HOPPER_CURRENT_SDK_VERSION;
 }
 
-- (instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
+- (nonnull instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
     if (self = [super init]) {
         _services = services;
     }
@@ -28,15 +28,7 @@
     return _services;
 }
 
-- (Class)cpuContextClass {
-    return [___PACKAGENAMEASIDENTIFIER___Ctx class];
-}
-
-- (NSObject<CPUContext> *)buildCPUContextForFile:(NSObject<HPDisassembledFile> *)file {
-    return [[___PACKAGENAMEASIDENTIFIER___Ctx alloc] initWithCPU:self andFile:file];
-}
-
-- (NSObject<HPHopperUUID> *)pluginUUID {
+- (nonnull NSObject<HPHopperUUID> *)pluginUUID {
     return [_services UUIDWithString:@"___UUID___"];
 }
 
@@ -44,43 +36,63 @@
     return Plugin_CPU;
 }
 
-- (NSString *)pluginName {
+- (nonnull NSString *)pluginName {
     return @"___PACKAGENAMEASIDENTIFIER___";
 }
 
-- (NSString *)pluginDescription {
+- (nonnull NSString *)pluginDescription {
     return @"___PACKAGENAMEASIDENTIFIER___ CPU support";
 }
 
-- (NSString *)pluginAuthor {
+- (nonnull NSString *)pluginAuthor {
     return @"___FULLUSERNAME___";
 }
 
-- (NSString *)pluginCopyright {
+- (nonnull NSString *)pluginCopyright {
     return @"___COPYRIGHT___";
 }
 
-- (NSArray<NSString *> *)cpuFamilies {
-    return @[ @"___PACKAGENAMEASIDENTIFIER___" ];
-}
-
-- (NSString *)pluginVersion {
+- (nonnull NSString *)pluginVersion {
     return @"0.0.1";
 }
 
-- (NSString *)commandLineIdentifier {
-    return @"___VARIABLE_commandLineIdentifier___";
+- (nonnull NSArray<NSString *> *)commandLineIdentifiers {
+    return @[@"___VARIABLE_commandLineIdentifier___"];
 }
 
-- (NSArray<NSString *> *)cpuSubFamiliesForFamily:(NSString *)family {
+// CPUDefinition
+
+- (nonnull Class)cpuContextClass {
+    return [___PACKAGENAMEASIDENTIFIER___Ctx class];
+}
+
+- (nonnull NSObject<CPUContext> *)buildCPUContextForFile:(nonnull NSObject<HPDisassembledFile> *)file {
+    return [[___PACKAGENAMEASIDENTIFIER___Ctx alloc] initWithCPU:self andFile:file];
+}
+
+- (nonnull NSArray<NSString *> *)cpuFamilies {
+    return @[ @"___PACKAGENAMEASIDENTIFIER___" ];
+}
+
+- (nonnull NSArray<NSString *> *)cpuSubFamiliesForFamily:(nullable NSString *)family {
     if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"])
         return @[ @"___VARIABLE_cpuSubFamily___" ];
-    return nil;
+    return @[];
 }
 
-- (int)addressSpaceWidthInBitsForCPUFamily:(NSString *)family andSubFamily:(NSString *)subFamily {
-    if ([family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) {
-        if ([subFamily isEqualToString:@"___VARIABLE_cpuSubFamily___"])
+- (int)addressSpaceWidthInBitsForCPUFamily:(nullable NSString *)family 
+                              andSubFamily:(nullable NSString *)subFamily {
+    if (family != nil && [family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) {
+        if (subFamily != nil && [subFamily isEqualToString:@"___VARIABLE_cpuSubFamily___"])
+            return ___VARIABLE_bitCount___;
+    }
+    return 0;
+}
+
+- (int)integerWidthInBitsForCPUFamily:(nullable NSString *)family
+                         andSubFamily:(nullable NSString *)subFamily {
+     if (family != nil && [family isEqualToString:@"___PACKAGENAMEASIDENTIFIER___"]) {
+        if (subFamily != nil && [subFamily isEqualToString:@"___VARIABLE_cpuSubFamily___"])
             return ___VARIABLE_bitCount___;
     }
     return 0;
@@ -106,10 +118,6 @@
     return @[@"generic"];
 }
 
-- (NSString *)framePointerRegisterNameForFile:(NSObject<HPDisassembledFile> *)file cpuMode:(uint8_t)cpuMode {
-    return @"";
-}
-
 - (NSUInteger)registerClassCount {
     return RegClass____PACKAGENAMEASIDENTIFIER____Cnt;
 }
@@ -122,25 +130,7 @@
     return ___VARIABLE_registerCount___;
 }
 
-- (BOOL)registerIndexIsStackPointer:(NSUInteger)reg
-                            ofClass:(RegClass)reg_class
-                            cpuMode:(uint8_t)cpuMode
-                               file:(NSObject<HPDisassembledFile> *)file {
-    return NO;
-}
-
-- (BOOL)registerIndexIsFrameBasePointer:(NSUInteger)reg
-                                ofClass:(RegClass)reg_class
-                                cpuMode:(uint8_t)cpuMode
-                                   file:(NSObject<HPDisassembledFile> *)file {
-    return NO;
-}
-
-- (BOOL)registerIndexIsProgramCounter:(NSUInteger)reg cpuMode:(uint8_t)cpuMode file:(NSObject<HPDisassembledFile> *)file {
-    return reg == 1;
-}
-
-- (NSString *)registerIndexToString:(NSUInteger)reg
+- (nonnull NSString *)registerIndexToString:(NSUInteger)reg
                             ofClass:(RegClass)reg_class
                         withBitSize:(NSUInteger)size
                            position:(DisasmPosition)position
@@ -152,18 +142,46 @@
         default:
             return [NSString stringWithFormat:@"class%d_reg%d", (int)reg_class, (int)reg];
     }
-    return nil;
-}
-
-- (BOOL)registerHasSideEffectForIndex:(NSUInteger)reg andClass:(RegClass)reg_class {
-    return NO;
+    return @"";
 }
 
 - (NSString *)cpuRegisterStateMaskToString:(uint32_t)cpuState {
     return @"";
 }
 
-- (NSData *)nopWithSize:(NSUInteger)size andMode:(NSUInteger)cpuMode forFile:(NSObject<HPDisassembledFile> *)file {
+- (BOOL)registerIndexIsStackPointer:(NSUInteger)reg
+                            ofClass:(RegClass)reg_class
+                            cpuMode:(uint8_t)cpuMode
+                               file:(nonnull NSObject<HPDisassembledFile> *)file {
+    return NO;
+}
+
+- (BOOL)registerIndexIsFrameBasePointer:(NSUInteger)reg
+                                ofClass:(RegClass)reg_class
+                                cpuMode:(uint8_t)cpuMode
+                                   file:(nonnull NSObject<HPDisassembledFile> *)file {
+    return NO;
+}
+
+- (BOOL)registerIndexIsProgramCounter:(NSUInteger)reg 
+                              cpuMode:(uint8_t)cpuMode
+                                 file:(nonnull NSObject<HPDisassembledFile> *)file {
+    return reg == 1;
+}
+
+- (BOOL)registerHasSideEffectForIndex:(NSUInteger)reg 
+                             andClass:(RegClass)reg_class {
+    return NO;
+}
+
+- (nullable NSString *)framePointerRegisterNameForFile:(nonnull NSObject<HPDisassembledFile> *)file 
+                                                puMode:(uint8_t)cpuMode {
+    return nil;
+}
+
+- (NSData *)nopWithSize:(NSUInteger)size 
+                andMode:(NSUInteger)cpuMode
+                forFile:(nonnull NSObject<HPDisassembledFile> *)file {
     // Instruction size is always a multiple of 4
     if (size % 4 != 0)
         return nil;
@@ -176,11 +194,13 @@
     return [NSData dataWithData:nopArray];
 }
 
-- (BOOL)canAssembleInstructionsForCPUFamily:(NSString *)family andSubFamily:(NSString *)subFamily {
+- (BOOL)canAssembleInstructionsForCPUFamily:(nullable NSString *)family 
+                               andSubFamily:(nullable NSString *)subFamily {
     return NO;
 }
 
-- (BOOL)canDecompileProceduresForCPUFamily:(NSString *)family andSubFamily:(NSString *)subFamily {
+- (BOOL)canDecompileProceduresForCPUFamily:(nullable NSString *)family 
+                              andSubFamily:(nullable NSString *)subFamily {
     return NO;
 }
 

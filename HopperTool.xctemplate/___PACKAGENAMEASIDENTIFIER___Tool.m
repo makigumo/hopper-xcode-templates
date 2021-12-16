@@ -16,14 +16,14 @@
     return HOPPER_CURRENT_SDK_VERSION;
 }
 
-- (instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
+- (nonnull instancetype)initWithHopperServices:(NSObject<HPHopperServices> *)services {
     if (self = [super init]) {
         _services = services;
     }
     return self;
 }
 
-- (NSObject<HPHopperUUID> *)pluginUUID {
+- (nonnull NSObject<HPHopperUUID> *)pluginUUID {
     return [_services UUIDWithString:@"___UUID___"];
 }
 
@@ -31,31 +31,31 @@
     return Plugin_Tool;
 }
 
-- (NSString *)pluginName {
+- (nonnull NSString *)pluginName {
     return @"___PACKAGENAMEASIDENTIFIER___";
 }
 
-- (NSString *)pluginDescription {
+- (nonnull NSString *)pluginDescription {
     return @"___PACKAGENAMEASIDENTIFIER___ Tool";
 }
 
-- (NSString *)pluginAuthor {
+- (nonnull NSString *)pluginAuthor {
     return @"___FULLUSERNAME___";
 }
 
-- (NSString *)pluginCopyright {
+- (nonnull NSString *)pluginCopyright {
     return @"___COPYRIGHT___";
 }
 
-- (NSString *)pluginVersion {
+- (nonnull NSString *)pluginVersion {
     return @"0.0.1";
 }
 
-- (NSString *)commandLineIdentifier {
-    return @"___VARIABLE_commandLineIdentifier___";
+- (nonnull NSArray<NSString *> *)commandLineIdentifiers {
+    return @[@"___VARIABLE_commandLineIdentifier___"];
 }
 
-- (NSArray *)toolMenuDescription {
+- (nonnull NSArray<NSDictionary<NSString *, id> *> *)toolMenuDescription {
     return @[];
 }
 
